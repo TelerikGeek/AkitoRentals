@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo ( )
+            .Grid<AkitoRentalsSample.Models.ViewModels.CarMakeOriginListingViewModel> ( )
+            .Name ( "Grid" )
+            .Columns ( columns =>
+            {
+                columns.Bound ( o => o.OriginId ).Width ( 180 );
+                columns.Bound ( o => o.OriginTitle );
+                columns.Bound ( o => o.TotalMakeCount )
+                    .Title("# Makes")
+                    .HeaderHtmlAttributes(new { style = "text-align: center;" } )
+                    .HtmlAttributes( new { style = "text-align: center; font-weight: bold;" } )
+                    .Width ( 120 );
+            } )
+            .Scrollable ( )
+            .ClientDetailTemplateId("CarMakesTemplate")
+            .DataSource ( dataSource =>
+                  dataSource
+                  .Ajax ( )
+                  .PageSize ( 15 )
+                  .Read ( read => read.Action ( "GetCarMakeOrigins", "CarMakeOrigins" ) )
+            )
+            .HtmlAttributes ( new { style = "height: 550px; width: 700px;" } )
+        .Pageable ( )
+        .Filterable ( )
+        .Sortable ( )
+        .ColumnMenu ( ))
+
+
+<script id="CarMakesTemplate" type="text/kendo-tmpl">
+    @(Html.Kendo ( ).Grid<AkitoRentalsSample.Models.ViewModels.CarMakeListingViewModel> ( )
+            .Name ( "grid_#=OriginTitle#" ) // template expression, to be evaluated in the master context
+            .Columns ( columns =>
+            {
+                columns.Bound ( m => m.MakeId ).Width ( 80 );
+                columns.Bound ( m => m.MakeTitle ).Width ( 250 );
+            } )
+            .DataSource ( dataSource => dataSource
+                  .Ajax ( )
+                  .PageSize ( 10 )
+                  .Read ( read => read.Action ( "GetCarMakes", "CarMakeOrigins", new { originId = "#=OriginId#" } ) )
+            )
+            .Pageable ( )
+            .Sortable ( )
+            .ToClientTemplate ( )
+    )
+</script>

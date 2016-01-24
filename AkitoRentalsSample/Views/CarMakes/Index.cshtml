@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int pageSize = 15;
+    int makeIdColumnWidth = 90;
+    int originTitleColumnWidth = 180;
+
+    string gridCarMakesListingName = "gCarMakesListing";
+    string makeIdHeaderValue = "Id";
+    string originTitleHeaderValue = "Origin";
+    string makeTitleHeaderValue = "Make";
+    string carMakesViewModelActionName = "GetCarMakesViewModel";
+    string carMakesControllerName = "CarMakes";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo ( )
+            .Grid<AkitoRentalsSample.Models.ViewModels.CarMakeListingViewModel> ( )
+            .Name ( gridCarMakesListingName )
+            .Columns ( columns =>
+            {
+                columns.Bound ( m => m.MakeId )
+                    .HeaderHtmlAttributes ( new { style = "text-align: center; text-transform: uppercase;" } )
+                    .HtmlAttributes ( new { style = "text-align: center;" } )
+                    .Title ( makeIdHeaderValue )
+                    .Width ( makeIdColumnWidth );
+                columns.Bound ( m => m.OriginTitle )
+                    .HeaderHtmlAttributes ( new { style = "text-transform: uppercase;" } )
+                    .Title ( originTitleHeaderValue )
+                    .Width ( originTitleColumnWidth );
+                columns.Bound ( m => m.MakeTitle )
+                    .HeaderHtmlAttributes ( new { style = "text-transform: uppercase;" } )
+                    .Title ( makeTitleHeaderValue );
+            } )
+            .ToolBar ( toolbar => toolbar.Create ( ) )
+            .Editable ( editable => editable.Mode ( GridEditMode.InLine ) )
+            .Scrollable ( )
+            .DataSource ( dataSource =>
+                  dataSource
+                  .Ajax ( )
+                  .PageSize ( @pageSize )
+                  .Model ( model =>
+                  {
+                      model.Id ( m => m.MakeId );
+                      model.Field ( m => m.MakeId ).Editable ( false );
+                  } )
+
+              .Create (update => update.Action( "CreateCarMake", "CarMakes" ) )
+              .Read ( read => read.Action ( carMakesViewModelActionName, carMakesControllerName ) )
+        )
+        .HtmlAttributes ( new { style = "height: 550px; width: 700px;" } )
+        .Pageable ( )
+        .Filterable ( )
+        .Sortable ( )
+        .Groupable()
+        .ColumnMenu ( ))

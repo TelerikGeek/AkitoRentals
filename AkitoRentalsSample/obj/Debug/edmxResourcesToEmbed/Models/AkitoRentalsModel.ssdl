@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AkitoRentalsSample.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RentalCarCode" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="ModelId" Type="int" Nullable="false" />
+    <Property Name="MakeId" Type="int" Nullable="false" />
+    <Property Name="AvailabilityId" Type="int" />
+    <Property Name="YearsOfUse" Type="int" />
+    <Property Name="MonthsOfUse" Type="int" />
+    <Property Name="SeatingCapacity" Type="int" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="StatusId" Type="int" />
+  </EntityType>
+  <EntityType Name="CarAvailability">
+    <Key>
+      <PropertyRef Name="AvailabilityId" />
+    </Key>
+    <Property Name="AvailabilityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AvailabilityTitle" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CarMake">
+    <Key>
+      <PropertyRef Name="MakeId" />
+    </Key>
+    <Property Name="MakeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MakeTitle" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="OriginId" Type="int" Nullable="false" />
+    <Property Name="BrandLogoUrl" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="CarMakeOrigin">
+    <Key>
+      <PropertyRef Name="OriginId" />
+    </Key>
+    <Property Name="OriginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OriginTitle" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CarMileage">
+    <Key>
+      <PropertyRef Name="MileageId" />
+    </Key>
+    <Property Name="MileageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarId" Type="int" Nullable="false" />
+    <Property Name="DistanceTraveled" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DateCreated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CarModel">
+    <Key>
+      <PropertyRef Name="ModelId" />
+    </Key>
+    <Property Name="ModelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MakeId" Type="int" Nullable="false" />
+    <Property Name="ReleaseYear" Type="int" Nullable="false" />
+    <Property Name="ModelName" Type="varchar" MaxLength="350" Nullable="false" />
+    <Property Name="ModelNo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CarStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusTitle" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CarType">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeTitle" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Citizenship">
+    <Key>
+      <PropertyRef Name="CitizenshipId" />
+    </Key>
+    <Property Name="CitizenshipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CitizenshipTitle" Type="varchar" MaxLength="35" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="150" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="CustIdentificationNo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="EmploymentStatusId" Type="int" Nullable="false" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="300" />
+    <Property Name="Password" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="CitizenshipId" Type="int" Nullable="false" />
+    <Property Name="StreetName" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="BuildingName" Type="varchar" MaxLength="500" />
+    <Property Name="BuildingNo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="UnitNo" Type="varchar" MaxLength="10" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="6" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="StatusId" Type="int" />
+  </EntityType>
+  <EntityType Name="CustomerStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusTitle" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="150" />
+    <Property Name="EmployeeCode" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="PositionId" Type="int" Nullable="false" />
+    <Property Name="JobTitle" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastLogin" Type="datetime" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="StatusId" Type="int" />
+  </EntityType>
+  <EntityType Name="EmployeePosition">
+    <Key>
+      <PropertyRef Name="PositionId" />
+    </Key>
+    <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PositionTitle" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusTitle" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmploymentStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusTitle" Type="varchar" MaxLength="35" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RentalHistory">
+    <Key>
+      <PropertyRef Name="RentalHistoryId" />
+    </Key>
+    <Property Name="RentalHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="CarId" Type="int" Nullable="false" />
+    <Property Name="RentalStartDate" Type="datetime" />
+    <Property Name="RentalReturnDate" Type="datetime" />
+    <Property Name="RentalRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="RentalMethodId" Type="int" Nullable="false" />
+    <Property Name="IssuingEmployeeId" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateModified" Type="datetime" />
+    <Property Name="SendReminderAlert" Type="bit" />
+    <Property Name="StatusId" Type="int" />
+  </EntityType>
+  <EntityType Name="RentalMethod">
+    <Key>
+      <PropertyRef Name="MethodId" />
+    </Key>
+    <Property Name="MethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MethodTitle" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RentalStatus">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusTitle" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Car_CarAvailability">
+    <End Role="CarAvailability" Type="Self.CarAvailability" Multiplicity="0..1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarAvailability">
+        <PropertyRef Name="AvailabilityId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="AvailabilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_CarModel">
+    <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarModel">
+        <PropertyRef Name="ModelId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="ModelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_CarStatus">
+    <End Role="CarStatus" Type="Self.CarStatus" Multiplicity="0..1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_CarType">
+    <End Role="CarType" Type="Self.CarType" Multiplicity="1" />
+    <End Role="Car" Type="Self.Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarType">
+        <PropertyRef Name="TypeId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarMake_CarMakeOrigin">
+    <End Role="CarMakeOrigin" Type="Self.CarMakeOrigin" Multiplicity="1" />
+    <End Role="CarMake" Type="Self.CarMake" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarMakeOrigin">
+        <PropertyRef Name="OriginId" />
+      </Principal>
+      <Dependent Role="CarMake">
+        <PropertyRef Name="OriginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarMileage_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="CarMileage" Type="Self.CarMileage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="CarId" />
+      </Principal>
+      <Dependent Role="CarMileage">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarModel_CarMake">
+    <End Role="CarMake" Type="Self.CarMake" Multiplicity="1" />
+    <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarMake">
+        <PropertyRef Name="MakeId" />
+      </Principal>
+      <Dependent Role="CarModel">
+        <PropertyRef Name="MakeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Citizenship">
+    <End Role="Citizenship" Type="Self.Citizenship" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizenship">
+        <PropertyRef Name="CitizenshipId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CitizenshipId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_CustomerStatus">
+    <End Role="CustomerStatus" Type="Self.CustomerStatus" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_EmploymentStatus">
+    <End Role="EmploymentStatus" Type="Self.EmploymentStatus" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmploymentStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="EmploymentStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeePosition">
+    <End Role="EmployeePosition" Type="Self.EmployeePosition" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeePosition">
+        <PropertyRef Name="PositionId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeeStatus">
+    <End Role="EmployeeStatus" Type="Self.EmployeeStatus" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentalHistory_Car">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Self.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="CarId" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentalHistory_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Self.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentalHistory_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Self.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="IssuingEmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentalHistory_RentalMethod">
+    <End Role="RentalMethod" Type="Self.RentalMethod" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Self.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RentalMethod">
+        <PropertyRef Name="MethodId" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="RentalMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RentalHistory_RentalStatus">
+    <End Role="RentalStatus" Type="Self.RentalStatus" Multiplicity="0..1" />
+    <End Role="RentalHistory" Type="Self.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RentalStatus">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AkitoRentalsSampleModelsStoreContainer">
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarAvailability" EntityType="Self.CarAvailability" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarMake" EntityType="Self.CarMake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarMakeOrigin" EntityType="Self.CarMakeOrigin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarMileage" EntityType="Self.CarMileage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarStatus" EntityType="Self.CarStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CarType" EntityType="Self.CarType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Citizenship" EntityType="Self.Citizenship" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerStatus" EntityType="Self.CustomerStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeePosition" EntityType="Self.EmployeePosition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeStatus" EntityType="Self.EmployeeStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmploymentStatus" EntityType="Self.EmploymentStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentalHistory" EntityType="Self.RentalHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentalMethod" EntityType="Self.RentalMethod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentalStatus" EntityType="Self.RentalStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Car_CarAvailability" Association="Self.FK_Car_CarAvailability">
+      <End Role="CarAvailability" EntitySet="CarAvailability" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_CarModel" Association="Self.FK_Car_CarModel">
+      <End Role="CarModel" EntitySet="CarModel" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_CarStatus" Association="Self.FK_Car_CarStatus">
+      <End Role="CarStatus" EntitySet="CarStatus" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_CarType" Association="Self.FK_Car_CarType">
+      <End Role="CarType" EntitySet="CarType" />
+      <End Role="Car" EntitySet="Car" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarMake_CarMakeOrigin" Association="Self.FK_CarMake_CarMakeOrigin">
+      <End Role="CarMakeOrigin" EntitySet="CarMakeOrigin" />
+      <End Role="CarMake" EntitySet="CarMake" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarMileage_Car" Association="Self.FK_CarMileage_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="CarMileage" EntitySet="CarMileage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarModel_CarMake" Association="Self.FK_CarModel_CarMake">
+      <End Role="CarMake" EntitySet="CarMake" />
+      <End Role="CarModel" EntitySet="CarModel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Citizenship" Association="Self.FK_Customer_Citizenship">
+      <End Role="Citizenship" EntitySet="Citizenship" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_CustomerStatus" Association="Self.FK_Customer_CustomerStatus">
+      <End Role="CustomerStatus" EntitySet="CustomerStatus" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_EmploymentStatus" Association="Self.FK_Customer_EmploymentStatus">
+      <End Role="EmploymentStatus" EntitySet="EmploymentStatus" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeePosition" Association="Self.FK_Employee_EmployeePosition">
+      <End Role="EmployeePosition" EntitySet="EmployeePosition" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeStatus" Association="Self.FK_Employee_EmployeeStatus">
+      <End Role="EmployeeStatus" EntitySet="EmployeeStatus" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentalHistory_Car" Association="Self.FK_RentalHistory_Car">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentalHistory_Customer" Association="Self.FK_RentalHistory_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentalHistory_Employee" Association="Self.FK_RentalHistory_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentalHistory_RentalMethod" Association="Self.FK_RentalHistory_RentalMethod">
+      <End Role="RentalMethod" EntitySet="RentalMethod" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RentalHistory_RentalStatus" Association="Self.FK_RentalHistory_RentalStatus">
+      <End Role="RentalStatus" EntitySet="RentalStatus" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

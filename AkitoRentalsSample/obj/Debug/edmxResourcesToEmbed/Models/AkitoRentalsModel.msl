@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AkitoRentalsSampleModelsStoreContainer" CdmEntityContainer="AkitoRentalsContext">
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.Car">
+        <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="CarId" ColumnName="CarId" />
+          <ScalarProperty Name="RentalCarCode" ColumnName="RentalCarCode" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+          <ScalarProperty Name="MakeId" ColumnName="MakeId" />
+          <ScalarProperty Name="AvailabilityId" ColumnName="AvailabilityId" />
+          <ScalarProperty Name="YearsOfUse" ColumnName="YearsOfUse" />
+          <ScalarProperty Name="MonthsOfUse" ColumnName="MonthsOfUse" />
+          <ScalarProperty Name="SeatingCapacity" ColumnName="SeatingCapacity" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarAvailabilities">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarAvailability">
+        <MappingFragment StoreEntitySet="CarAvailability">
+          <ScalarProperty Name="AvailabilityId" ColumnName="AvailabilityId" />
+          <ScalarProperty Name="AvailabilityTitle" ColumnName="AvailabilityTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarMakes">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarMake">
+        <MappingFragment StoreEntitySet="CarMake">
+          <ScalarProperty Name="MakeId" ColumnName="MakeId" />
+          <ScalarProperty Name="MakeTitle" ColumnName="MakeTitle" />
+          <ScalarProperty Name="OriginId" ColumnName="OriginId" />
+          <ScalarProperty Name="BrandLogoUrl" ColumnName="BrandLogoUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarMakeOrigins">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarMakeOrigin">
+        <MappingFragment StoreEntitySet="CarMakeOrigin">
+          <ScalarProperty Name="OriginId" ColumnName="OriginId" />
+          <ScalarProperty Name="OriginTitle" ColumnName="OriginTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarMileages">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarMileage">
+        <MappingFragment StoreEntitySet="CarMileage">
+          <ScalarProperty Name="MileageId" ColumnName="MileageId" />
+          <ScalarProperty Name="CarId" ColumnName="CarId" />
+          <ScalarProperty Name="DistanceTraveled" ColumnName="DistanceTraveled" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarModels">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarModel">
+        <MappingFragment StoreEntitySet="CarModel">
+          <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+          <ScalarProperty Name="MakeId" ColumnName="MakeId" />
+          <ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+          <ScalarProperty Name="ModelNo" ColumnName="ModelNo" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarStatus">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarStatus">
+        <MappingFragment StoreEntitySet="CarStatus">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusTitle" ColumnName="StatusTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarTypes">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CarType">
+        <MappingFragment StoreEntitySet="CarType">
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Citizenships">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.Citizenship">
+        <MappingFragment StoreEntitySet="Citizenship">
+          <ScalarProperty Name="CitizenshipId" ColumnName="CitizenshipId" />
+          <ScalarProperty Name="CitizenshipTitle" ColumnName="CitizenshipTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="CustIdentificationNo" ColumnName="CustIdentificationNo" />
+          <ScalarProperty Name="EmploymentStatusId" ColumnName="EmploymentStatusId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CitizenshipId" ColumnName="CitizenshipId" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+          <ScalarProperty Name="BuildingNo" ColumnName="BuildingNo" />
+          <ScalarProperty Name="UnitNo" ColumnName="UnitNo" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerStatus">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.CustomerStatus">
+        <MappingFragment StoreEntitySet="CustomerStatus">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusTitle" ColumnName="StatusTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeePositions">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.EmployeePosition">
+        <MappingFragment StoreEntitySet="EmployeePosition">
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="PositionTitle" ColumnName="PositionTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeStatus">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.EmployeeStatus">
+        <MappingFragment StoreEntitySet="EmployeeStatus">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusTitle" ColumnName="StatusTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmploymentStatus">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.EmploymentStatus">
+        <MappingFragment StoreEntitySet="EmploymentStatus">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusTitle" ColumnName="StatusTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentalHistories">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.RentalHistory">
+        <MappingFragment StoreEntitySet="RentalHistory">
+          <ScalarProperty Name="RentalHistoryId" ColumnName="RentalHistoryId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CarId" ColumnName="CarId" />
+          <ScalarProperty Name="RentalStartDate" ColumnName="RentalStartDate" />
+          <ScalarProperty Name="RentalReturnDate" ColumnName="RentalReturnDate" />
+          <ScalarProperty Name="RentalRate" ColumnName="RentalRate" />
+          <ScalarProperty Name="RentalMethodId" ColumnName="RentalMethodId" />
+          <ScalarProperty Name="IssuingEmployeeId" ColumnName="IssuingEmployeeId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="SendReminderAlert" ColumnName="SendReminderAlert" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentalMethods">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.RentalMethod">
+        <MappingFragment StoreEntitySet="RentalMethod">
+          <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+          <ScalarProperty Name="MethodTitle" ColumnName="MethodTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentalStatus1">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.RentalStatus">
+        <MappingFragment StoreEntitySet="RentalStatus">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusTitle" ColumnName="StatusTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AkitoRentalsSample.Models.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

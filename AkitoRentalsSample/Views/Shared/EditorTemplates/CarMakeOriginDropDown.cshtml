@@ -1,0 +1,6 @@
+﻿
+@(Html.Kendo().DropDownList ( )
+    .Name("CarMakeOrigin")
+    .DataValueField("OriginId")
+    .DataTextField("OriginTitle")
+    .BindTo((System.Collections.IEnumerable)ViewData["CarMakeOrigins"]))
