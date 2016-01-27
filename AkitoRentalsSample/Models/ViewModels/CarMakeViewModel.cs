@@ -8,17 +8,23 @@ using System.Threading.Tasks;
 
 namespace AkitoRentalsSample.Models.ViewModels
 {
-    public class CarMakeListingViewModel
+    public class CarMakeViewModel
     {
         /// <summary>
         /// Represents the Primary Key for the CarMake table.
         /// </summary>
         public int MakeId { get; set; }
 
-        /// <summary>
-        /// Represents the Country of Origin for the Make.
-        /// </summary>
-        public string OriginTitle { get; set; }
+		/// <summary>
+		/// Represents the Foreign Key to the CarMakeOrigin table.
+		/// </summary>
+		[UIHint ( "CarMakeOriginEditor" ), Required]
+		public int OriginId { get; set; }
+
+		/// <summary>
+		/// Represents the Origin Title string value
+		/// </summary>
+		public string OriginTitle { get; set; }
 
         /// <summary>
         /// Represents the title of the Make.
@@ -26,5 +32,15 @@ namespace AkitoRentalsSample.Models.ViewModels
         [Required]
         [DisplayName ( "Make" )]
         public string MakeTitle { get; set; }
+
+		/// <summary>
+		/// Represents the Brand Logo Url value.
+		/// </summary>
+        public string BrandLogoUrl { get; set; }
+        
+		
+        public CarMakeOrigin CarMakeOrigin { get; set; }
+
+        public ICollection<CarModel> CarModels { get; set; }
     }
 }

@@ -14,45 +14,60 @@
     string carMakesControllerName = "CarMakes";
 }
 
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+
 <h2>Index</h2>
 
 @(Html.Kendo ( )
-            .Grid<AkitoRentalsSample.Models.ViewModels.CarMakeListingViewModel> ( )
-            .Name ( gridCarMakesListingName )
-            .Columns ( columns =>
-            {
-                columns.Bound ( m => m.MakeId )
-                    .HeaderHtmlAttributes ( new { style = "text-align: center; text-transform: uppercase;" } )
-                    .HtmlAttributes ( new { style = "text-align: center;" } )
-                    .Title ( makeIdHeaderValue )
-                    .Width ( makeIdColumnWidth );
-                columns.Bound ( m => m.OriginTitle )
-                    .HeaderHtmlAttributes ( new { style = "text-transform: uppercase;" } )
-                    .Title ( originTitleHeaderValue )
-                    .Width ( originTitleColumnWidth );
-                columns.Bound ( m => m.MakeTitle )
-                    .HeaderHtmlAttributes ( new { style = "text-transform: uppercase;" } )
-                    .Title ( makeTitleHeaderValue );
-            } )
-            .ToolBar ( toolbar => toolbar.Create ( ) )
-            .Editable ( editable => editable.Mode ( GridEditMode.InLine ) )
-            .Scrollable ( )
-            .DataSource ( dataSource =>
-                  dataSource
-                  .Ajax ( )
-                  .PageSize ( @pageSize )
-                  .Model ( model =>
-                  {
-                      model.Id ( m => m.MakeId );
-                      model.Field ( m => m.MakeId ).Editable ( false );
-                  } )
-
-              .Create (update => update.Action( "CreateCarMake", "CarMakes" ) )
-              .Read ( read => read.Action ( carMakesViewModelActionName, carMakesControllerName ) )
-        )
-        .HtmlAttributes ( new { style = "height: 550px; width: 700px;" } )
-        .Pageable ( )
-        .Filterable ( )
-        .Sortable ( )
-        .Groupable()
-        .ColumnMenu ( ))
+		.Grid<AkitoRentalsSample.Models.ViewModels.CarMakeViewModel> ( )
+		.Name ( gridCarMakesListingName )
+		.Columns ( columns =>
+		{
+			columns.Bound ( m => m.MakeId )
+				.HeaderHtmlAttributes ( new { style = "text-align: center; text-transform: uppercase;" } )
+				.HtmlAttributes ( new { style = "text-align: center; min-width: 100px;" } )
+				.Title ( makeIdHeaderValue )
+				.Width ( makeIdColumnWidth );
+			columns.ForeignKey(m => m.OriginId, (System.Collections.IEnumerable) ViewData["CarMakeOrigins"], "OriginId", "OriginTitle").Title("Origin")
+				.HeaderHtmlAttributes ( new { style = "text-transform: uppercase; min-width: 250px; width: 25%;" } )
+				.HtmlAttributes ( new { style = "text-align: left;" } );
+			columns.Bound ( m => m.MakeTitle )
+				.HeaderHtmlAttributes ( new { style = "text-align: left; text-transform: uppercase;" } )
+				.HtmlAttributes ( new { style = "text-align: left;" } )
+				.Title ( makeTitleHeaderValue );
+			columns.Command ( command => { command.Edit ( ); command.Destroy ( ); } ).Width ( 250 );
+		} )
+		.Scrollable ( )
+		.Editable ( editable => editable.Mode ( GridEditMode.InLine ) )
+		.DataSource ( dataSource => dataSource
+			.Ajax ( )
+			.PageSize ( @pageSize )
+			.Model ( model => {
+				model.Id ( m => m.MakeId );
+				model.Field ( m => m.MakeId ).Editable ( false );
+				model.Field ( m => m.OriginId ).DefaultValue ( ViewData [ "DefaultOrigin" ] as AkitoRentalsSample.Models.ViewModels.CarMakeOriginListingViewModel );
+			} )
+			.Read ( read => read.Action ( carMakesViewModelActionName, carMakesControllerName ) )
+			.Update (update => update.Action ("UpdateCarMake", "CarMakes"))
+			.Destroy(destroy => destroy.Action("DeleteCarMake", "CarMakes"))
+		)
+		.HtmlAttributes ( new { style = "height: 550px; width: 100%;" } )
+		.ColumnMenu ( )
+		.Pageable ( )
+		.Sortable ( )
+		.Filterable ( )
+		.Groupable ( ))

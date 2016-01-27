@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using AkitoRentalsSample.Models;
+using AkitoRentalsSample.Models.ViewModels;
 
 namespace AkitoRentalsSample.Controllers
 {
@@ -16,32 +17,33 @@ namespace AkitoRentalsSample.Controllers
         // GET: CarMakes
         public ActionResult Index()
         {
-            ViewData [ "CarMakeOrigins" ] = from origin in db.CarMakeOrigins
-                                            join make in db.CarMakes on origin.OriginId equals make.OriginId
+            ViewData [ "CarMakeOrigins" ] = from origin in db.CarMakeOrigins.Distinct()
                                             select new
                                             {
                                                 origin.OriginId,
-                                                origin.OriginTitle,
-                                                TotalMakeCount = origin.CarMakes.Count
+                                                origin.OriginTitle
                                             };
+
+            ViewData [ "CarMakes" ] = db.CarMakes.Include ( m => m.CarMakeOrigin ).Include ( m => m.CarModels ).ToList ( );
+
+            ViewData [ "DefaultOrigin" ] = db.CarMakeOrigins.First ( );
 
             return View();
         }
-
+		
         public ActionResult GetCarMakesViewModel ( [DataSourceRequest] DataSourceRequest request )
         {
-            var carmakes = ( from make in db.CarMakes.ToList ( )
-                              join origin in db.CarMakeOrigins.ToList ( ) on make.OriginId equals origin.OriginId
-                              join model in db.CarModels.ToList() on make.MakeId equals model.MakeId
-                              select new
-                              {
-                                  make.MakeId,
-                                  origin.OriginTitle,
-                                  make.MakeTitle
-
-                              } ).ToList ( );
+            var carmakes = from carMake in db.CarMakes
+						   join carMakeOrigin in db.CarMakeOrigins on carMake.OriginId equals carMakeOrigin.OriginId
+                           select new
+                           {
+								carMake.MakeId,
+								carMake.OriginId,
+								carMake.CarMakeOrigin.OriginTitle,
+								carMake.MakeTitle,
+								carMake.BrandLogoUrl
+							};
               
-
             //var carMakes = db.CarMakes.Include ( m => m.CarMakeOrigins ).ToList ( );
 
             return Json ( carmakes.ToDataSourceResult ( request ) );
@@ -57,6 +59,22 @@ namespace AkitoRentalsSample.Controllers
             }
 
             return Json ( new [ ] { carMake }.ToDataSourceResult ( request, ModelState ) );
+        }
+
+        [AcceptVerbs ( HttpVerbs.Post )]
+        public ActionResult UpdateCarMake ( [DataSourceRequest] DataSourceRequest request, [Bind ( Prefix = "models" )]IEnumerable<CarMake> makes )
+        {
+            if ( makes != null && ModelState.IsValid )
+            {
+                foreach ( var make in makes )
+                {
+                    db.CarMakes.Attach ( make );
+                    db.Entry ( make ).State = EntityState.Modified;
+                    db.SaveChanges ( );
+                }
+            }
+
+            return Json ( makes.ToDataSourceResult ( request, ModelState ) );
         }
     }
 }

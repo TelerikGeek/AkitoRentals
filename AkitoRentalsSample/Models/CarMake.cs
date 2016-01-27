@@ -11,7 +11,6 @@ namespace AkitoRentalsSample.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     public partial class CarMake
     {
@@ -20,14 +19,13 @@ namespace AkitoRentalsSample.Models
         {
             this.CarModels = new HashSet<CarModel>();
         }
+    
         public int MakeId { get; set; }
-        [Required]
-        [DisplayName("Make")]
         public string MakeTitle { get; set; }
         public int OriginId { get; set; }
         public string BrandLogoUrl { get; set; }
     
-        [UIHint("CarMakeOriginDropDown")]
+        [UIHint("CarMakeOriginEditor"), Required]
         public virtual CarMakeOrigin CarMakeOrigin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CarModel> CarModels { get; set; }
