@@ -30,7 +30,6 @@
     }
 </script>
 
-<h2>Index</h2>
 
 @(Html.Kendo ( )
 		.Grid<AkitoRentalsSample.Models.ViewModels.CarMakeViewModel> ( )
@@ -52,6 +51,7 @@
 			columns.Command ( command => { command.Edit ( ); command.Destroy ( ); } ).Width ( 250 );
 		} )
 		.Scrollable ( )
+		.ToolBar(toolbar => toolbar.Create())
 		.Editable ( editable => editable.Mode ( GridEditMode.InLine ) )
 		.DataSource ( dataSource => dataSource
 			.Ajax ( )
@@ -61,7 +61,9 @@
 				model.Field ( m => m.MakeId ).Editable ( false );
 				model.Field ( m => m.OriginId ).DefaultValue ( ViewData [ "DefaultOrigin" ] as AkitoRentalsSample.Models.ViewModels.CarMakeOriginListingViewModel );
 			} )
+			.Events ( events => events.Error ( "error_handler" ) )
 			.Read ( read => read.Action ( carMakesViewModelActionName, carMakesControllerName ) )
+			.Create (update => update.Action ("CreateCarMake", "CarMakes"))
 			.Update (update => update.Action ("UpdateCarMake", "CarMakes"))
 			.Destroy(destroy => destroy.Action("DeleteCarMake", "CarMakes"))
 		)

@@ -8,12 +8,14 @@ using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using AkitoRentalsSample.Models;
 using AkitoRentalsSample.Models.ViewModels;
+using AkitoRentalsSample.Models.Services;
 
 namespace AkitoRentalsSample.Controllers
 {
     public class CarMakesController : Controller
     {
         private readonly AkitoRentalsContext db = new AkitoRentalsContext ( );
+		//private CarMakeServices services;
         // GET: CarMakes
         public ActionResult Index()
         {
@@ -43,8 +45,6 @@ namespace AkitoRentalsSample.Controllers
 								carMake.MakeTitle,
 								carMake.BrandLogoUrl
 							};
-              
-            //var carMakes = db.CarMakes.Include ( m => m.CarMakeOrigins ).ToList ( );
 
             return Json ( carmakes.ToDataSourceResult ( request ) );
         }
@@ -62,19 +62,24 @@ namespace AkitoRentalsSample.Controllers
         }
 
         [AcceptVerbs ( HttpVerbs.Post )]
-        public ActionResult UpdateCarMake ( [DataSourceRequest] DataSourceRequest request, [Bind ( Prefix = "models" )]IEnumerable<CarMake> makes )
+        public ActionResult UpdateCarMake ( [DataSourceRequest] DataSourceRequest request, CarMakeViewModel make )
         {
-            if ( makes != null && ModelState.IsValid )
+			CarMake carMake = db.CarMakes.Where ( m => m.MakeId == make.MakeId ).FirstOrDefault ( );
+
+			if (make.CarMakeOrigin != null )
+			{
+				carMake.OriginId = make.CarMakeOrigin.OriginId;
+			}
+			carMake.MakeTitle = make.MakeTitle;
+
+			if ( make != null && ModelState.IsValid )
             {
-                foreach ( var make in makes )
-                {
-                    db.CarMakes.Attach ( make );
-                    db.Entry ( make ).State = EntityState.Modified;
-                    db.SaveChanges ( );
-                }
+                db.CarMakes.Attach ( carMake );
+                db.Entry ( carMake ).State = EntityState.Modified;
+                db.SaveChanges ( );
             }
 
-            return Json ( makes.ToDataSourceResult ( request, ModelState ) );
+            return Json ( new [ ] { carMake }.ToDataSourceResult ( request, ModelState ) );
         }
     }
 }

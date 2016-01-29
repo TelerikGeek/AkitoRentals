@@ -304,6 +304,7 @@
     <Compile Include="Models\CarMake.cs">
       <DependentUpon>AkitoRentalsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Services\CarMakeServices.cs" />
     <Compile Include="Models\ViewModels\CarMakeViewModel.cs" />
     <Compile Include="Models\CarMakeOrigin.cs">
       <DependentUpon>AkitoRentalsModel.tt</DependentUpon>
