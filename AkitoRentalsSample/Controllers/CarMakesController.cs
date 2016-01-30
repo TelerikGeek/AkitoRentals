@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Web;
 using System.Web.Mvc;
 using Kendo.Mvc.UI;
@@ -66,20 +68,52 @@ namespace AkitoRentalsSample.Controllers
         {
 			CarMake carMake = db.CarMakes.Where ( m => m.MakeId == make.MakeId ).FirstOrDefault ( );
 
-			if (make.CarMakeOrigin != null )
-			{
-				carMake.OriginId = make.CarMakeOrigin.OriginId;
-			}
-			carMake.MakeTitle = make.MakeTitle;
+			ViewData [ "CarMakeOrigins" ] = from origin in db.CarMakeOrigins.Distinct ( )
+											select new
+											{
+												origin.OriginId,
+												origin.OriginTitle
+											};
+			ViewData [ "DefaultOrigin" ] = db.CarMakeOrigins.First ( );
 
 			if ( make != null && ModelState.IsValid )
             {
-                db.CarMakes.Attach ( carMake );
-                db.Entry ( carMake ).State = EntityState.Modified;
-                db.SaveChanges ( );
+				carMake.MakeTitle = make.MakeTitle;
+				carMake.OriginId = make.OriginId;
+
+				carMake.CarMakeOrigin = db.CarMakeOrigins.Where ( o => o.OriginId == make.OriginId ).FirstOrDefault ( );
+				make.CarMakeOrigin = carMake.CarMakeOrigin;
+
+				try
+				{
+					db.CarMakes.Attach ( carMake );
+					db.Entry ( carMake ).State = EntityState.Modified;
+					db.SaveChanges ( );
+				}
+				catch ( DbEntityValidationException ex)
+				{
+					Debug.WriteLine ( "[Car Make Module] DbEntityValidationException Caught" );
+					Debug.WriteLine ( "----------------------------------------------------" );
+					var errorMessages = ex.EntityValidationErrors.SelectMany ( x => x.ValidationErrors ).Select ( x => x.ErrorMessage );
+
+					var fullErrorMessage = string.Join ( ";\n", errorMessages );
+
+					var exceptionMessage = string.Concat ( ex.Message, "The validation errors are: ", fullErrorMessage );
+
+					Debug.WriteLine ( exceptionMessage );
+				}
             }
 
-            return Json ( new [ ] { carMake }.ToDataSourceResult ( request, ModelState ) );
+			Debug.WriteLine ( "[Car Make Module] Record values:" );
+			Debug.WriteLine ( "{" );
+			Debug.WriteLine ( "\tMakeId : " + make.MakeId.ToString ( ) );
+			Debug.WriteLine ( "\tOriginId : " + make.OriginId.ToString ( ) );
+			Debug.WriteLine ( "\tMakeTitle : " + make.MakeTitle );
+			Debug.WriteLine ( "\tOriginTitle : " + make.CarMakeOrigin.OriginTitle );
+			Debug.WriteLine ( "\tBrandLogoUrl : " + make.BrandLogoUrl );
+			Debug.WriteLine ( "}" );
+
+			return Json ( new [ ] { make }.ToDataSourceResult ( request, ModelState ) );
         }
     }
 }

@@ -1,3 +1,5 @@
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\obj\Debug\AkitoRentalsSample.pdb
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\obj\Debug\AkitoRentalsSample.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\roslyn\csc.exe
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -22,6 +24,7 @@ C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.Microsoft
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.Relational.Design.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.Relational.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.SqlServer.dll
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Kendo.Mvc.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.AspNet.Identity.Core.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -53,7 +56,10 @@ C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Remotion.Linq.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Collections.Immutable.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Diagnostics.DiagnosticSource.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Interactive.Async.dll
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Net.Http.Formatting.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Helpers.dll
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.dll
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.WebHost.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Mvc.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Optimization.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Razor.dll
@@ -67,6 +73,7 @@ C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.Microsoft
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.MicrosoftSqlServer.Design.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.Relational.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\EntityFramework.Relational.Design.xml
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Kendo.Mvc.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Extensions.Caching.Abstractions.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Extensions.Caching.Memory.xml
@@ -82,6 +89,9 @@ C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Extensions.Prim
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Remotion.Linq.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Diagnostics.DiagnosticSource.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Interactive.Async.xml
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Net.Http.Formatting.xml
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.xml
+C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.WebHost.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Helpers.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Mvc.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Optimization.xml
@@ -105,10 +115,6 @@ C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Owin.Security.O
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Owin.Security.Google.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Owin.Security.Twitter.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\obj\Debug\AkitoRentalsSample.dll
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\obj\Debug\AkitoRentalsSample.pdb
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Kendo.Mvc.dll
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\Kendo.Mvc.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\bg-BG\Kendo.Mvc.resources.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\cs-CZ\Kendo.Mvc.resources.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\da-DK\Kendo.Mvc.resources.dll
@@ -127,10 +133,4 @@ C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\sv-SE\Kendo.Mvc.resources
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\tr-TR\Kendo.Mvc.resources.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\uk-UA\Kendo.Mvc.resources.dll
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\zh-CN\Kendo.Mvc.resources.dll
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Net.Http.Formatting.dll
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.dll
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.WebHost.dll
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Net.Http.Formatting.xml
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.xml
-C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\bin\System.Web.Http.WebHost.xml
 C:\inetpub\wwwroot\AkitoRentals\AkitoRentalsSample\obj\Debug\AkitoRentalsSample.csprojResolveAssemblyReference.cache

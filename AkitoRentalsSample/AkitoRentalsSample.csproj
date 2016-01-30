@@ -1130,6 +1130,7 @@
     <Content Include="Views\CarMakes\Index.cshtml" />
     <Content Include="Views\CarMakeOrigins\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CarMakeOriginEditor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BrandLogoUrlEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

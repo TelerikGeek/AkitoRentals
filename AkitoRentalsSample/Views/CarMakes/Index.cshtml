@@ -14,28 +14,15 @@
     string carMakesControllerName = "CarMakes";
 }
 
-<script type="text/javascript">
-    function error_handler(e) {
-        if (e.errors) {
-            var message = "Errors:\n";
-            $.each(e.errors, function (key, value) {
-                if ('errors' in value) {
-                    $.each(value.errors, function() {
-                        message += this + "\n";
-                    });
-                }
-            });
-            alert(message);
-        }
-    }
-</script>
-
+<h1>Car Makes</h1>
 
 @(Html.Kendo ( )
 		.Grid<AkitoRentalsSample.Models.ViewModels.CarMakeViewModel> ( )
 		.Name ( gridCarMakesListingName )
 		.Columns ( columns =>
 		{
+			columns.Bound ( m => m.BrandLogoUrl ).ClientTemplate ( "<img src='#=BrandLogoUrl#' style='max-height: 80px; width: auto; max-width: 150px;'>" ).Title ( "Logo" )
+			.HtmlAttributes ( new { style = "text-align: center; min-width: 200px; max-width: 250px;" } ).Width(200);
 			columns.Bound ( m => m.MakeId )
 				.HeaderHtmlAttributes ( new { style = "text-align: center; text-transform: uppercase;" } )
 				.HtmlAttributes ( new { style = "text-align: center; min-width: 100px;" } )
@@ -48,20 +35,24 @@
 				.HeaderHtmlAttributes ( new { style = "text-align: left; text-transform: uppercase;" } )
 				.HtmlAttributes ( new { style = "text-align: left;" } )
 				.Title ( makeTitleHeaderValue );
-			columns.Command ( command => { command.Edit ( ); command.Destroy ( ); } ).Width ( 250 );
+			columns.Command ( command => { command.Edit(); command.Destroy ( ); } ).Width ( 250 );
 		} )
 		.Scrollable ( )
-		.ToolBar(toolbar => toolbar.Create())
+		.ToolBar(toolbar => { toolbar.Create ( ); } )
+		.Selectable ( selectable => selectable
+			  .Mode ( GridSelectionMode.Multiple ) )
 		.Editable ( editable => editable.Mode ( GridEditMode.InLine ) )
+		.Events (events => events.Save("saveChanges"))
 		.DataSource ( dataSource => dataSource
 			.Ajax ( )
 			.PageSize ( @pageSize )
 			.Model ( model => {
 				model.Id ( m => m.MakeId );
+				model.Field ( m => m.BrandLogoUrl );
 				model.Field ( m => m.MakeId ).Editable ( false );
 				model.Field ( m => m.OriginId ).DefaultValue ( ViewData [ "DefaultOrigin" ] as AkitoRentalsSample.Models.ViewModels.CarMakeOriginListingViewModel );
 			} )
-			.Events ( events => events.Error ( "error_handler" ) )
+			.Events ( events => events.Error("error_handler") )
 			.Read ( read => read.Action ( carMakesViewModelActionName, carMakesControllerName ) )
 			.Create (update => update.Action ("CreateCarMake", "CarMakes"))
 			.Update (update => update.Action ("UpdateCarMake", "CarMakes"))
@@ -73,3 +64,29 @@
 		.Sortable ( )
 		.Filterable ( )
 		.Groupable ( ))
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+
+            
+        }
+    }
+
+    function saveChanges(e) {
+    	alert('Changes have been saved.');
+
+    	var grid = $("#gCarMakesListing").data("kendoGrid");
+    	grid.clearSelection();
+    	grid.refresh();
+    }
+</script>

@@ -33,6 +33,7 @@ namespace AkitoRentalsSample.Models.ViewModels
         [DisplayName ( "Make" )]
         public string MakeTitle { get; set; }
 
+		[UIHint("BrandLogoUrlEditor")]
 		/// <summary>
 		/// Represents the Brand Logo Url value.
 		/// </summary>
